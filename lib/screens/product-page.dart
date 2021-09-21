@@ -8,14 +8,16 @@ class ProductPage extends StatelessWidget {
   final ProductBloc productBloc = ProductBloc();
 
   void showSnackBarMessage(BuildContext context, String message) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(
-        message,
-        style: TextStyle(color: Colors.white),
-      ),
-      duration: const Duration(seconds: 2),
-      backgroundColor: Colors.black,
-    ));
+    ScaffoldMessenger.of(context)
+      ..clearSnackBars()
+      ..showSnackBar(SnackBar(
+        content: Text(
+          message,
+          style: TextStyle(color: Colors.white),
+        ),
+        duration: const Duration(seconds: 2),
+        backgroundColor: Colors.black,
+      ));
   }
 
   Widget build(BuildContext context) {
