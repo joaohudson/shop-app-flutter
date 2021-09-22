@@ -1,11 +1,13 @@
 import 'dart:convert';
 
+import 'package:shop/models/inventory-item-model.dart';
 import 'package:shop/models/product-model.dart';
 import 'package:http/http.dart' as http;
+import 'package:shop/repositories/inventory-repository.dart';
 
 class ProductBloc {
   void buyProduct(ProductModel product) {
-    print('-\$ $product');
+    InvetoryRepository().add(InventoryItemModel(product, 1));
   }
 
   Future<List<ProductModel>> listAll() async {

@@ -1,7 +1,7 @@
 class ProductModel {
-  String name;
-  String description;
-  double price;
+  final String name;
+  final String description;
+  final double price;
 
   ProductModel(this.name, this.description, this.price);
 
