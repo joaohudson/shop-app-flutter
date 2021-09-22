@@ -12,29 +12,36 @@ class HomePage extends StatelessWidget {
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             IconButton(
+              tooltip: 'Loja',
+              padding: EdgeInsets.symmetric(vertical: 10),
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => ProductPage()),
                 );
               },
-              icon: Icon(Icons.shop),
+              icon: Icon(Icons.shopping_cart_outlined),
               iconSize: iconSize,
             ),
             IconButton(
+              tooltip: 'Inventário',
+              padding: EdgeInsets.symmetric(vertical: 10),
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => InvetoryPage()),
                 );
               },
-              icon: Icon(Icons.inventory),
+              icon: Icon(Icons.shopping_bag_outlined),
               iconSize: iconSize,
             ),
             IconButton(
+              tooltip: 'Voltar',
+              padding: EdgeInsets.symmetric(vertical: 10),
               onPressed: () {
                 Navigator.push(
                   context,
