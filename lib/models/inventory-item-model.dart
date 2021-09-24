@@ -7,7 +7,8 @@ class InventoryItemModel {
   InventoryItemModel(this.product, this.quantity);
 
   factory InventoryItemModel.fromJson(Map<String, dynamic> json) =>
-      InventoryItemModel(json['product'], json['quantity']);
+      InventoryItemModel(
+          ProductModel.fromJson(json['product']), json['quantity']);
 
   @override
   String toString() {
