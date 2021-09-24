@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
-import 'package:shop/bloc/product-bloc.dart';
 import 'package:shop/models/product-model.dart';
+import 'package:shop/services/api-service.dart';
 
 class ProductPage extends StatelessWidget {
-  final ProductBloc productBloc = ProductBloc();
+  final apiService = ApiService();
 
   void showSnackBarMessage(BuildContext context, String message) {
     ScaffoldMessenger.of(context)
@@ -20,13 +20,23 @@ class ProductPage extends StatelessWidget {
       ));
   }
 
+  void purchaseProduct(BuildContext context, ProductModel product) async {
+    try {
+      await apiService.purchaseProduct(product.name);
+      showSnackBarMessage(
+          context, 'Você gastou \$${product.price} em ${product.name}');
+    } catch (e) {
+      showSnackBarMessage(context, e.toString());
+    }
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Produtos'),
       ),
       body: FutureBuilder(
-        future: productBloc.listAll(),
+        future: apiService.listAllProducts(),
         builder: (context, AsyncSnapshot<List<ProductModel>> snapshot) {
           if (snapshot.hasError) {
             return Center(child: Text(snapshot.error.toString()));
@@ -47,10 +57,8 @@ class ProductPage extends StatelessWidget {
                 children: [
                   IconButton(
                     tooltip: 'Comprar?',
-                    onPressed: () {
-                      productBloc.buyProduct(product);
-                      showSnackBarMessage(context,
-                          'Você gastou \$${product.price} em ${product.name}');
+                    onPressed: () async {
+                      purchaseProduct(context, product);
                     },
                     icon: Icon(Icons.monetization_on_outlined),
                   )

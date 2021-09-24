@@ -8,7 +8,7 @@ class HomePage extends StatelessWidget {
     final iconSize = 80.0;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Page'),
+        title: Text('Home'),
       ),
       body: Center(
         child: Column(
