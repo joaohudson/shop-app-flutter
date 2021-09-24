@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop/models/product-model.dart';
 import 'package:shop/services/api-service.dart';
+import 'package:shop/widgets/product-widget.dart';
 
 class ProductPage extends StatelessWidget {
   final apiService = ApiService();
@@ -50,19 +51,9 @@ class ProductPage extends StatelessWidget {
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) {
               var product = snapshot.data![index];
-              return ExpansionTile(
-                title: Text(product.name),
-                subtitle: Text('\$${product.price}'),
-                trailing: Text(product.description),
-                children: [
-                  IconButton(
-                    tooltip: 'Comprar?',
-                    onPressed: () async {
-                      purchaseProduct(context, product);
-                    },
-                    icon: Icon(Icons.monetization_on_outlined),
-                  )
-                ],
+              return ProductWidget(
+                product: product,
+                purchaseProduct: purchaseProduct,
               );
             },
           );
